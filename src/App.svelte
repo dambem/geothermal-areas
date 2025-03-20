@@ -21,14 +21,14 @@
   onMount(() => {
 
     function getColorForFeature(f) {
-      if (f.properties.BGSAgeDesc === "Triassic") {
-        return [255, 153, 51, 90]; // Orange for Triassic
+      if (f.properties.Geotherm_1 === "Pre-Permian, limestone, southern province") {
+        return [255, 153, 51, 90]; 
       }
       else if (f.properties.GeologicHa === "Hydrothermal") {
-        return [66, 134, 244, 90]; // Blue for Hydrothermal
+        return [66, 134, 244, 90]; 
       }
       else if (f.properties.Geotherm_2 === "Intracratonic Basin") {
-        return [76, 175, 80, 90]; // Green for Intracratonic Basin
+        return [76, 175, 80, 90]; 
       }
       return [90, 90, 250, 90];
     }
