@@ -30,7 +30,7 @@
       else if (f.properties.Geotherm_2 === "Intracratonic Basin") {
         return [76, 175, 80, 90]; // Green for Intracratonic Basin
       }
-      return [160, 160, 180, 90];
+      return [90, 90, 250, 90];
     }
     const map = new maplibregl.Map({
       container: deckContainer,
