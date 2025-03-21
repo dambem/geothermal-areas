@@ -10,6 +10,7 @@
   import 'maplibre-gl/dist/maplibre-gl.css';
   import geojsonData from './assets/geothermal_areas_v2.json';
   import Rainbow from 'rainbowvis.js';
+  import {LightingEffect, AmbientLight, _SunLight as SunLight} from '@deck.gl/core';
 
   let deckContainer;
   let deck;
@@ -23,6 +24,18 @@
   const types = new Set();
   const age = new Set();
   var filteredData;
+  const ambientLight = new AmbientLight({
+  color: [255, 255, 255],
+  intensity: 1.0
+  });
+
+  const dirLight = new SunLight({
+    timestamp: Date.UTC(2019, 7, 1, 22),
+    color: [255, 255, 255],
+    intensity: 1.0,
+    _shadow: true
+  });
+
 
   function hexToRgba(hex, alpha = 90) {
     hex = hex.replace('#', '');
@@ -69,10 +82,10 @@
  
     const map = new maplibregl.Map({
       container: deckContainer,
-      style: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
-      center: [0.45, 51.47],
-      zoom: 4,
-      bearing: 0,
+      style: 'https://api.maptiler.com/maps/backdrop/style.json?key=cyYG5tvmi6dhPXwxXQXr',
+      center: [-8, 53],
+      zoom: 5.2,
+      bearing: -10,
       pitch: 30
     });
 
@@ -86,13 +99,15 @@
           pickable: true,
           stroke: false,
           extruded: true,
+          material: true,
           filled: true,
-          opacity: 0.5,
+          opacity: 0.8,
           getLineColor: [255, 255, 255],
           getElevation: f => 2000+1500*Math.random(),
           getFillColor: getColorForFeature,
         })
       ],
+      lights: [ambientLight, dirLight],
       getTooltip: ({object}) => {
         if (!object) {
           return null;
@@ -121,7 +136,7 @@
     });
     map.addControl(deck)
 
-    map.addControl(new maplibregl.NavigationControl())
+    // map.addControl(new maplibregl.NavigationControl())
   });
 
 
@@ -138,7 +153,8 @@
           stroke: false,
           extruded: true,
           filled: true,
-          opacity: 0.5,
+          material: true,
+          opacity: 0.8,
           getLineColor: [255, 255, 255],
           getElevation: f => 1000+500*Math.random(),
           getFillColor: getColorForFeature,
