@@ -21,6 +21,7 @@
     "@loaders.gl/core": "^4.3.3",
     "@loaders.gl/json": "^4.3.3",
     "@loaders.gl/shapefile": "^4.3.3",
-    "maplibre-gl": "^5.2.0"
+    "maplibre-gl": "^5.2.0",
+    "rainbowvis.js": "^1.1.1"
   }
 }
